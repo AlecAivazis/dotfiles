@@ -1,5 +1,5 @@
 # add the user specific bin to the path
-export PATH=~/bin:${PATH}
+export PATH=~/bin:/opt/local/bin:${PATH}
 # add the dv directory to the cd path
 export CDPATH=~/dv:${CDPATH}
 
