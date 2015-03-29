@@ -6,6 +6,9 @@ setopt AUTO_CD
 # Allow comments even in interactive shells (especially for Muness)
 setopt INTERACTIVE_COMMENTS
 
+# Pass invalid matches onto the command
+setopt NO_NOMATCH
+
 # ===== History
 
 # Allow multiple terminal sessions to all append to one zsh command history
