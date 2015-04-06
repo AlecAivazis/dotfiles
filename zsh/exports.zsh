@@ -21,3 +21,8 @@ export LESS='--ignore-case --raw-control-chars'
 export PAGER='most'
 # CTAGS Sorting in VIM/Emacs is better behaved with this in place
 export LC_COLLATE=C
+
+# virtualenv settings
+export WORKON_HOME=${HOME}/dv/virtualenvs
+export PROJECT_HOME=${HOME}/dv
+source /opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh
