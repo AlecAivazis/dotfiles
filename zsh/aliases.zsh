@@ -1,8 +1,5 @@
 # Colorize output, add file type indicator, and put sizes in human readable format
-alias ls='ls -GFh'
-
-# Same as above, but in long listing format
-alias ll='ls -GFhl'
+alias ll='ls -GAhl'
 
 # mm aliases
 alias mm='python3 ${HOME}/dv/config/make/mm.py'
