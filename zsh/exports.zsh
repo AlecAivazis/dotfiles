@@ -1,5 +1,5 @@
 # add the user specific bin to the path
-export PATH=~/bin:/opt/local/bin:${PATH}
+export PATH=~/bin:/usr/local/bin:${PATH}
 
 # Setup terminal, and turn on colors
 export TERM=xterm-256color
@@ -25,4 +25,3 @@ export LC_COLLATE=C
 # virtualenv settings
 export WORKON_HOME=${HOME}/dv/virtualenvs
 export PROJECT_HOME=${HOME}/dv
-source /opt/local/Library/Frameworks/Python.framework/Versions/3.4/bin/virtualenvwrapper.sh

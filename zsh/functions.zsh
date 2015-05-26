@@ -37,42 +37,6 @@ function extract {
   fi
 }
 
-function pg_start {
-  /usr/local/bin/pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
-}
-
-function pg_stop {
-  /usr/local/bin/pg_ctl -D /usr/local/var/postgres stop -s -m fast
-}
-
-function mysql_start {
-  mysql.server start
-}
-
-function mysql_stop {
-  mysql.server stop
-}
-
-function ss {
-  if [ -e script/server ]; then
-    script/server $@
-  else
-    script/rails server $@
-  fi
-}
-
-function sc {
-  if [ -e script/console ]; then
-    script/console $@
-  else
-    script/rails console $@
-  fi
-}
-
-function fix_airplay {
-  sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}'`
-}
-
 # Detect empty enter, execute git status if in git dir
 magic-enter () {
         if [[ -z $BUFFER ]]; then
