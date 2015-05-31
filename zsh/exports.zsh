@@ -1,5 +1,5 @@
 # add the user specific bin to the path
-export PATH=~/bin:/usr/local/bin:~/dv/go/bin/:${PATH}
+export PATH=~/bin:/usr/local/bin:~/dv/go/bin:/usr/local/sbin:${PATH}
 
 
 # don't commit this #
