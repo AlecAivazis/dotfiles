@@ -1,9 +1,7 @@
 # add the user specific bin to the path
 export PATH=~/bin:/usr/local/bin:~/dv/go/bin:/usr/local/sbin:${PATH}
 
-
-# don't commit this #
-export HOMEBREW_GITHUB_API_TOKEN=f4011911311b2ebb21f676300729bbd7e77064e7
+export HOMEBREW_GITHUB_API_TOKEN= 
 
 # point go to the directory
 export GOPATH=${HOME}/dv/go
