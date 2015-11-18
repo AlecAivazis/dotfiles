@@ -9,5 +9,3 @@ source ~/.zsh/functions.zsh
 source ~/.zsh/history.zsh
 source ~/.zsh/zsh_hooks.zsh
 source ~/.zsh/plugins.zsh
-
-source virtualenvwrapper.sh
