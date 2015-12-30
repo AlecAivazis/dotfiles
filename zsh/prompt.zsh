@@ -29,4 +29,8 @@ function git_prompt_info {
   fi
 }
 
-PROMPT='%n@%M: %15<..<%~%<< $(git_prompt_info)${PR_BOLD_WHITE}>%{${reset_color}%} '
+function current_location {
+  echo "${fg_bold[blue]}%15<..<%~%<<${reset_color}"
+}
+
+PROMPT='%n@%M: $(current_location) $(git_prompt_info)${PR_BOLD_WHITE}>%{${reset_color}%} '
