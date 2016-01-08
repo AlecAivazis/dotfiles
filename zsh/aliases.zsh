@@ -21,7 +21,7 @@ mm.paths() {
 
 ## authorea aliases
 
-alias au-start-thin='thin start'
+alias au-start-thin='bundle exec thin start'
 alias au-start-redis='bundle exec redis-server'
 alias au-start-foreman='bundle exec foreman start'
 # start each of the services in their own tab
