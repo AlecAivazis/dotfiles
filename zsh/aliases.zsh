@@ -21,10 +21,10 @@ mm.paths() {
 
 ## authorea aliases
 
-alias au-start-redis='redis-server'
-alias au-start-foreman='rvm use "1.9.3-p125@sampleGollum" --create -- && bundle exec foreman start'
-alias au-start-thin='rvm use "1.9.3-p125@sampleGollum" --create -- && bundle exec thin start'
-alias au-start-thin-test='rvm use "1.9.3-p125@sampleGollum" --create -- && bundle exec thin start -e test -p 3001'
+alias au-start-thin='bundle exec thin start'
+alias au-start-redis='bundle exec redis-server'
+alias au-start-foreman='bundle exec foreman start'
+alias au-start-thin-test='bundle exec thin start -e test -p 3001'
 alias au-start-webpack='npm install && webpack --watch --colors'
 alias au-start='au-start-webpack; au-start-redis ; au-start-foreman ; au-start-thin'
 
