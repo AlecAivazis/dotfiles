@@ -6,8 +6,8 @@ export TERM=xterm-256color
 export LSCOLORS=Gxfxcxdxbxegedabagacad
 
 # default editor settings
-export EDITOR=/usr/bin/subl
-export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/vi
+export VISUAL=/usr/bin/vi
 
 # This resolves issues install the mysql, postgres, and other gems with native non universal binary extensions
 export ARCHFLAGS='-arch x86_64'
@@ -20,3 +20,4 @@ export LC_COLLATE=C
 # virtualenv settings
 export WORKON_HOME=${HOME}/dv/virtualenvs
 export PROJECT_HOME=${HOME}/dv
+source /usr/local/bin/virtualenvwrapper.sh
