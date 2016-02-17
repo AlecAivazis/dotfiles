@@ -18,7 +18,9 @@ export PAGER='most'
 # CTAGS Sorting in VIM/Emacs is better behaved with this in place
 export LC_COLLATE=C
 
-# virtualenv settings
-export WORKON_HOME=${HOME}/dv/virtualenvs
-export PROJECT_HOME=${HOME}/dv
-source /usr/local/bin/virtualenvwrapper.sh
+# setup virtualenv if its present
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=${HOME}/dv/virtualenvs
+    export PROJECT_HOME=${HOME}/dv
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
