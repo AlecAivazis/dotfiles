@@ -1,5 +1,6 @@
 # add the user specific bin to the path
 export PATH=~/bin:/usr/local/sbin:${PATH}
+export PYTHONPATH=~/bin/python
 
 # Setup terminal, and turn on colors
 export TERM=xterm-256color
