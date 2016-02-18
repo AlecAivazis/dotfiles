@@ -30,11 +30,11 @@ function git_prompt_info {
 }
 
 function current_location {
-  echo "%15<..<%~%<<"
+  echo "%15<..<%~%<<":
 }
 
 function user_host_pair {
-  echo "%{${fg_bold[blue]}%}%n@%M:%{${reset_color}%}"
+  echo "%{${fg_bold[blue]}%}%n@%15>..>%M%<<%{${reset_color}%}"
 }
 
 PROMPT='$(user_host_pair) $(current_location) $(git_prompt_info)%{${reset_color}%}> '
