@@ -37,4 +37,4 @@ function user_host_pair {
   echo "%{${fg_bold[blue]}%}%n@%15>..>%M%<<%{${reset_color}%}"
 }
 
-PROMPT='$(user_host_pair) $(current_location) $(git_prompt_info)%{${reset_color}%}> '
+PROMPT=' $(user_host_pair) $(current_location) $(git_prompt_info)%{${reset_color}%}> '

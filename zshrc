@@ -12,3 +12,5 @@ source ~/.zsh/plugins.zsh
 source ~/.zsh/syntax_highlighting.zsh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
