@@ -24,3 +24,6 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export PROJECT_HOME=${HOME}/dv
     source /usr/local/bin/virtualenvwrapper.sh
 fi
+
+# make sure opam is enabled
+. /Users/alec/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
