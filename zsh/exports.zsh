@@ -1,5 +1,8 @@
+# go stuff
+export GOPATH=~/dv/go
+
 # add the user specific bin to the path
-export PATH=~/bin/bash:/usr/local/sbin:${PATH}
+export PATH=~/bin/bash:/usr/local/sbin:${GOPATH}/bin:${PATH}
 export PYTHONPATH=~/bin/python
 
 # Setup terminal, and turn on colors
