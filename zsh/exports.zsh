@@ -1,5 +1,6 @@
 # patch zsh cache
 export ZSH_CACHE_DIR=$HOME/.zsh
+export SHELL=/bin/zsh
 
 # go stuff
 export GOPATH=~/dv/go
