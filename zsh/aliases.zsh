@@ -1,6 +1,10 @@
 # Colorize output, add file type indicator, and put sizes in human readable format
 alias ll='ls -GAhl'
 
+function unity {
+    /Applications/Unity/Unity.app/Contents/MacOS/Unity "$@"
+}
+
 
 ## mm aliases
 alias mm='python3 ${HOME}/dv/dad/mm//make/mm.py'
