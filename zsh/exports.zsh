@@ -5,8 +5,11 @@ export SHELL=/bin/zsh
 # go stuff
 export GOPATH=~/dv/go
 
+# env vars for git
+export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"
+
 # add the user specific bin to the path
-export PATH=~/bin/bash:/usr/local/sbin:${GOPATH}/bin:${PATH}
+export PATH=~/dv/dotfiles/bin:~/bin/bash:/usr/local/sbin:${GOPATH}/bin:${PATH}
 export PYTHONPATH=~/bin/python
 
 # Setup terminal, and turn on colors
