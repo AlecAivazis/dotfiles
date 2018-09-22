@@ -17,4 +17,6 @@ mm.paths() {
     eval $(python3 ${HOME}/dv/dad/mm/make/mm.py --quiet --paths=sh $*)
 }
 
+alias bfg="java -jar /usr/local/bin/bfg.jar"
+
 function code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args "$@"; }
