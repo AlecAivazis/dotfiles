@@ -9,7 +9,7 @@ export GOPATH=~/dv/go
 export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"
 
 # add the user specific bin to the path
-export PATH=~/dv/dotfiles/bin/bash:~/bin/bash:/usr/local/sbin:${GOPATH}/bin:${PATH}
+export PATH=~/dv/dotfiles/bin/bash:~/bin/bash:~/.dotnet/tools:/usr/local/sbin:${GOPATH}/bin:${PATH}
 export PYTHONPATH=~/bin/python
 
 # Setup terminal, and turn on colors
@@ -37,3 +37,7 @@ fi
 
 # make sure opam is enabled
 . /Users/alec/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" #
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion
