@@ -4,6 +4,7 @@ export SHELL=/bin/zsh
 
 # go stuff
 export GOPATH=~/dv/go
+export GO111MODULE=on
 
 # env vars for git
 export GIT_PAGER="diff-so-fancy | less --tabs=4 -RFX"
