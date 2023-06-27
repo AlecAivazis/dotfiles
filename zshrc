@@ -21,12 +21,3 @@ if [ -f '/Users/alec/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-PATH="/Users/alec/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/alec/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/alec/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/alec/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/alec/perl5"; export PERL_MM_OPT;
-
-# added by travis gem
-[ -f /Users/alec/.travis/travis.sh ] && source /Users/alec/.travis/travis.sh
