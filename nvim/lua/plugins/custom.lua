@@ -52,10 +52,20 @@ local plugins = {
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
+      diagnostics = {
+       enable = true,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        },
+        show_on_dirs = true,
+      },
       renderer = {
         icons = {
           glyphs = {
-            git = { 
+            git = {
               unstaged = "",
             },
           },
