@@ -1,7 +1,7 @@
 local plugins = {
 
   {
-    "wlliamboman/mason.nvim",
+    "williamboman/mason.nvim",
     opts = {
       automatic_installation = false,
       ensure_installed = {
