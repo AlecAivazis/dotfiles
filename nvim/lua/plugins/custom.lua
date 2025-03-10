@@ -47,7 +47,21 @@ local plugins = {
       -- opts.experimental = { ghost_text = true }
       require("cmp").setup(opts)
     end,
+  },
 
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      renderer = {
+        icons = {
+          glyphs = {
+            git = { 
+              unstaged = "",
+            },
+          },
+        },
+      },
+    }
   },
 }
 
