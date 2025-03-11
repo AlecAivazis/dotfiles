@@ -12,7 +12,8 @@ M.base46 = {
     NvimTreeGitDirty = { fg = "#75cb78" },
     NvimTreeOpenedFolderName = { fg = "#c7c7c7" },
     NvimTreeFolderName = { fg = "#c7c7c7" },
-    ["@string"] = { fg = "#f7d49c"}
+    ["@string"] = { fg = "#f7d49c"},
+    String = { fg = "#f7d49c"}
   },
 }
 

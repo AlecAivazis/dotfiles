@@ -5,7 +5,9 @@ local plugins = {
     opts = {
       automatic_installation = false,
       ensure_installed = {
-        "gopls"
+        "gopls",
+        "typescript-language-server",
+        "graphql-language-service-cli",
       },
     },
   },
@@ -15,7 +17,7 @@ local plugins = {
     ft = "go",
     opts = function()
       -- print hello
-      return require("configs.null-ls")
+      return require("configs.null-ls-go")
     end,
   },
 
@@ -72,6 +74,19 @@ local plugins = {
         },
       },
     }
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {}, 
+  },
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- or if using mini.icons/mini.nvim
+    -- dependencies = { "echasnovski/mini.icons" },
+    opts = {}
   },
 }
 
