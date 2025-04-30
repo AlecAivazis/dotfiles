@@ -64,6 +64,10 @@ local plugins = {
         },
         show_on_dirs = true,
       },
+      filters = {
+        dotfiles = false,
+        git_ignored = false,
+      },
       renderer = {
         icons = {
           glyphs = {
