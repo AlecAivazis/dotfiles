@@ -8,18 +8,16 @@ local plugins = {
         "gopls",
         "typescript-language-server",
         "graphql-language-service-cli",
+        "prettier",
+        "goimports",
+        "gofumpt",
+        "golines",
       },
     },
   },
 
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = "go",
-    opts = function()
-      -- print hello
-      return require("configs.null-ls-go")
-    end,
-  },
+  -- Removed null-ls configurations due to compatibility issues
+  -- Using conform.nvim for formatting instead
 
   {
     "hrsh7th/nvim-cmp",
