@@ -1,18 +1,62 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
--- Get NvChad's LSP configuration
+local lspconfig = require "lspconfig"
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- Configure servers using the new vim.lsp.config API
 local servers = {
   html = {},
   cssls = {},
-  ts_ls = {},
   graphql = {},
+  ts_ls = {
+    init_options = {
+      preferences = {
+        disableSuggestions = false,
+      }
+    },
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        }
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        }
+      }
+    }
+  },
+  gopls = {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_markers = { "go.work", "go.mod", ".git" },
+    settings = {
+      gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+          unusedParameters = true,
+        }
+      }
+    }
+  }
 }
 
--- Setup servers with default config
+-- Setup servers using vim.lsp.config
 for server, config in pairs(servers) do
   vim.lsp.config[server] = vim.tbl_deep_extend("force", {
     on_attach = nvlsp.on_attach,
@@ -21,21 +65,4 @@ for server, config in pairs(servers) do
   }, config)
 end
 
--- Configure gopls with custom settings
-vim.lsp.config.gopls = {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  on_init = nvlsp.on_init,
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_markers = { "go.work", "go.mod", ".git" },
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      usePlaceholders = true,
-      analyses = {
-        unusedParameters = true,
-      }
-    }
-  }
-}
+

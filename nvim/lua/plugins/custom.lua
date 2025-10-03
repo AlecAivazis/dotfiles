@@ -16,6 +16,21 @@ local plugins = {
     },
   },
 
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    opts = {
+      ensure_installed = {
+        "ts_ls",
+        "html",
+        "cssls",
+        "graphql",
+        "gopls",
+      },
+      automatic_installation = true,
+    },
+  },
+
   -- Removed null-ls configurations due to compatibility issues
   -- Using conform.nvim for formatting instead
 
@@ -77,11 +92,7 @@ local plugins = {
       },
     }
   },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {}, 
-  },
+
   {
     "ibhagwan/fzf-lua",
     -- optional for icon support
