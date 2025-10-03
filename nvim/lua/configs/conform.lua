@@ -14,9 +14,24 @@ local options = {
 
   formatters = {
     prettier = {
-      -- Override prettier to use npx and find project config
-      command = "npx",
-      args = { "prettier", "--stdin-filepath", "$FILENAME" },
+      -- Use direct prettier path for better performance
+      command = function()
+        -- Try to find local prettier first
+        local local_prettier = vim.fn.findfile("node_modules/.bin/prettier", ".;")
+        if local_prettier ~= "" then
+          return vim.fn.fnamemodify(local_prettier, ":p")
+        end
+
+        -- Fall back to Mason's prettier
+        local mason_prettier = vim.fn.stdpath("data") .. "/mason/bin/prettier"
+        if vim.fn.executable(mason_prettier) == 1 then
+          return mason_prettier
+        end
+
+        -- Final fallback to system prettier
+        return "prettier"
+      end,
+      args = { "--stdin-filepath", "$FILENAME" },
       stdin = true,
     },
   },
