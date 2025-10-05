@@ -9,6 +9,7 @@ local plugins = {
         "typescript-language-server",
         "graphql-language-service-cli",
         "prettier",
+        "biome",
         "goimports",
         "gofumpt",
         "golines",

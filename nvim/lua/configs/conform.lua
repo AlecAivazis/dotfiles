@@ -3,11 +3,11 @@ local options = {
 		lua = { "stylua" },
 		css = { "prettier" },
 		html = { "prettier" },
-		javascript = { "prettier" },
-		typescript = { "prettier" },
-		javascriptreact = { "prettier" },
-		typescriptreact = { "prettier" },
-		json = { "prettier" },
+		javascript = { "biome" },
+		typescript = { "biome" },
+		javascriptreact = { "biome" },
+		typescriptreact = { "biome" },
+		json = { "biome" },
 		markdown = { "prettier" },
 		go = { "goimports", "gofumpt", "golines" },
 	},
@@ -32,6 +32,26 @@ local options = {
 				return "prettier"
 			end,
 			args = { "--stdin-filepath", "$FILENAME" },
+			stdin = true,
+		},
+		biome = {
+			command = function()
+				-- Try to find local biome first
+				local local_biome = vim.fn.findfile("node_modules/.bin/biome", ".;")
+				if local_biome ~= "" then
+					return vim.fn.fnamemodify(local_biome, ":p")
+				end
+
+				-- Fall back to Mason's biome
+				local mason_biome = vim.fn.stdpath "data" .. "/mason/bin/biome"
+				if vim.fn.executable(mason_biome) == 1 then
+					return mason_biome
+				end
+
+				-- Final fallback to system biome
+				return "biome"
+			end,
+			args = { "format", "--stdin-file-path", "$FILENAME" },
 			stdin = true,
 		},
 	},
