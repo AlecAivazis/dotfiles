@@ -25,6 +25,10 @@ vim.diagnostic.config({
   },
 })
 
+-- Prevent LSP popups from stealing focus globally
+vim.lsp.set_log_level("warn") -- Reduce LSP logging noise
+vim.o.updatetime = 300 -- Reduce CursorHold trigger time (default is 4000ms)
+
 -- Configure servers using the new vim.lsp.config API
 local servers = {
   html = {},
@@ -82,12 +86,16 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
   max_width = 80,
   max_height = 20,
+  focusable = false,
+  close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = "rounded",
   max_width = 80,
   max_height = 20,
+  focusable = false,
+  close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
 })
 
 -- Custom on_attach function to add additional functionality
@@ -101,15 +109,15 @@ local function custom_on_attach(client, bufnr)
   -- Ensure gr mapping for references works
   vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP references" }))
 
-  -- Auto-show signature help in insert mode
-  if client.server_capabilities.signatureHelpProvider then
-    vim.api.nvim_create_autocmd("CursorHoldI", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.signature_help()
-      end,
-    })
-  end
+  -- Disabled auto-signature help to prevent focus stealing
+  -- if client.server_capabilities.signatureHelpProvider then
+  --   vim.api.nvim_create_autocmd("CursorHoldI", {
+  --     buffer = bufnr,
+  --     callback = function()
+  --       vim.lsp.buf.signature_help()
+  --     end,
+  --   })
+  -- end
 end
 
 -- Setup servers using vim.lsp.config

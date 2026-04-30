@@ -15,7 +15,7 @@ export PYTHONPATH=~/bin/python
 
 # Setup terminal, and turn on colors
 export TERM=xterm-256color
-export LSCOLORS=Gxfxcxdxbxegedabagacad
+# LSCOLORS is now set in colors.zsh to avoid conflicts
 
 # default editor settings
 export EDITOR=/usr/bin/vi

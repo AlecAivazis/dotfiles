@@ -59,8 +59,40 @@ local plugins = {
     },
 
     config = function(_, opts)
+      local cmp = require("cmp")
+
+      -- Add copilot to sources
       table.insert(opts.sources, 1, { name = "copilot" })
-      -- opts.experimental = { ghost_text = true }
+
+      -- Custom Tab behavior: Tab inserts tab, Option+Tab cycles completions
+      local function smart_tab(fallback)
+        -- Tab always inserts a tab character
+        fallback()
+      end
+
+      local function smart_option_tab(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          cmp.complete() -- Trigger completion
+        end
+      end
+
+      local function smart_option_shift_tab(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end
+
+      -- Override the mapping
+      opts.mapping = vim.tbl_deep_extend("force", opts.mapping or {}, {
+        ["<Tab>"] = cmp.mapping(smart_tab, { "i", "s" }),
+        ["<A-Tab>"] = cmp.mapping(smart_option_tab, { "i", "s" }),
+        ["<A-S-Tab>"] = cmp.mapping(smart_option_shift_tab, { "i", "s" }),
+      })
+
       require("cmp").setup(opts)
     end,
   },
