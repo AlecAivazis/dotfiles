@@ -4,7 +4,12 @@ source ~/.zsh/exports.zsh
 source ~/.zsh/bindkeys.zsh
 fpath=(/Users/alec/.docker/completions $fpath)
 source ~/.zsh/completion.zsh
-source ~/.zsh/prompt.zsh
+_starship_cache="$HOME/.zsh/starship_init.zsh"
+if [[ ! -f "$_starship_cache" || "$(command -v starship)" -nt "$_starship_cache" ]]; then
+  starship init zsh > "$_starship_cache"
+fi
+source "$_starship_cache"
+unset _starship_cache
 source ~/.zsh/aliases.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/history.zsh
