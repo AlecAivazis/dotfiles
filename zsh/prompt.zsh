@@ -1,36 +1,63 @@
-function git_prompt_info {
-  local ref=$(=git symbolic-ref HEAD 2> /dev/null)
-  local gitst="$(=git status 2> /dev/null)"
+typeset -g _git_info=""
+typeset -g _git_info_pid=0
+typeset -g _git_info_tmp=""
+
+function _git_info_compute() {
+  local ref
+  ref=$(git symbolic-ref HEAD 2>/dev/null) || return
+
+  local branch=${ref#refs/heads/}
+  local gitst
+  gitst=$(git status --porcelain -b 2>/dev/null)
+
   local pairname=${${${GIT_AUTHOR_EMAIL#pair+}%@github.com}//+/\/}
-  if [[ ${pairname} == 'ch' || ${pairname} == '' ]]; then
-    pairname=''
-  else
-    pairname=" ($pairname)"
-  fi
+  [[ $pairname == 'ch' || -z $pairname ]] && pairname='' || pairname=" ($pairname)"
 
+  local gitstatus=''
   if [[ -f .git/MERGE_HEAD ]]; then
-    if [[ ${gitst} =~ "unmerged" ]]; then
-      gitstatus=" %{$fg[red]%}unmerged%{$reset_color%}"
+    if echo "$gitst" | grep -qE '^(UU|AA|DD)'; then
+      gitstatus=" %F{red}unmerged%f"
     else
-      gitstatus=" %{$fg[green]%}merged%{$reset_color%}"
+      gitstatus=" %F{green}merged%f"
     fi
-  elif [[ ${gitst} =~ "Changes to be committed" ]]; then
-    gitstatus=" %{$fg[blue]%}!%{$reset_color%}"
-  elif [[ ${gitst} =~ "use \"git add" ]]; then
-    gitstatus=" %{$fg[red]%}!%{$reset_color%}"
-  elif [[ -n `git checkout HEAD 2> /dev/null | grep ahead` ]]; then
-    gitstatus=" %{$fg[yellow]%}*%{$reset_color%}"
-  else
-    gitstatus=''
+  elif echo "$gitst" | grep -qE '^[MADRCU]'; then
+    gitstatus=" %F{blue}!%f"
+  elif echo "$gitst" | grep -qE '^ [MD]'; then
+    gitstatus=" %F{red}!%f"
+  elif echo "$gitst" | grep -q '\[ahead'; then
+    gitstatus=" %F{yellow}*%f"
   fi
 
-  if [[ -n $ref ]]; then
-    echo "%{$fg_bold[green]%}/${ref#refs/heads/}%{$reset_color%}$gitstatus$pairname"
-  fi
+  echo "%B%F{green}/${branch}%f%b${gitstatus}${pairname}"
 }
 
+function _git_info_precmd() {
+  [[ $_git_info_pid -ne 0 ]] && kill $_git_info_pid 2>/dev/null
+  _git_info_tmp=$(mktemp /tmp/zsh_git_XXXXXX)
+  local parent_pid=$$
+  ( _git_info_compute > "$_git_info_tmp"; kill -USR1 "$parent_pid" 2>/dev/null ) &!
+  _git_info_pid=$!
+}
+
+TRAPUSR1() {
+  [[ -f ${_git_info_tmp:-} ]] && {
+    _git_info=$(<"$_git_info_tmp")
+    rm -f "$_git_info_tmp"
+    _git_info_tmp=""
+    _git_info_pid=0
+  }
+  [[ -o zle ]] && zle reset-prompt
+}
+
+function git_prompt_info() {
+  echo "$_git_info"
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _git_info_precmd
+
 function current_location {
-  echo "%15<..<%~%<<":
+  echo "%15<..<%~%<<"
 }
 
 function user_host_pair {

@@ -2,6 +2,7 @@ source ~/.zsh/colors.zsh
 source ~/.zsh/setopt.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/bindkeys.zsh
+fpath=(/Users/alec/.docker/completions $fpath)
 source ~/.zsh/completion.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/aliases.zsh
@@ -22,13 +23,6 @@ if [ -f '/Users/alec/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/U
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-# pnpm
-export PNPM_HOME="/Users/alec/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 # bun completions
 [ -s "/Users/alec/.bun/_bun" ] && source "/Users/alec/.bun/_bun"
 
@@ -36,12 +30,4 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/alec/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
 export PATH="$HOME/.local/bin:$PATH"
