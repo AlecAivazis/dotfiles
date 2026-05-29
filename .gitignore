@@ -1,2 +1,4 @@
 zsh/secrets.zsh
+zsh/local.zsh
+bin/bash/lclaude
 .DS_Store

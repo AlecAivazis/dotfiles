@@ -16,9 +16,10 @@ source ~/.zsh/history.zsh
 source ~/.zsh/zsh_hooks.zsh
 source ~/.zsh/plugins.zsh
 source ~/.zsh/secrets.zsh
+[ -f ~/.zsh/local.zsh ] && source ~/.zsh/local.zsh
 source ~/.zsh/syntax_highlighting.zsh
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:/Users/alec/Library/Python/3.11/bin"
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
