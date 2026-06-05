@@ -10,6 +10,8 @@ M.base46 = {
 
   hl_override = {
     NvimTreeGitDirty = { fg = "#75cb78" },
+    NvimTreeGitDirtyIcon = { fg = "#e5c07b" },
+
     NvimTreeOpenedFolderName = { fg = "#c7c7c7" },
     NvimTreeFolderName = { fg = "#c7c7c7" },
     ["@string"] = { fg = "#f7d49c"},

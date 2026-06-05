@@ -40,25 +40,7 @@ fi
 # make sure opam is enabled
 . /Users/alec/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-export NVM_DIR="$HOME/.nvm"
-
-# Lazy-load NVM — only initialize when nvm/node/npm/etc are first used
-function _nvm_load() {
-  unfunction nvm node npm npx yarn pnpm 2>/dev/null
-  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-}
-function nvm()  { _nvm_load; nvm "$@"; }
-function node() { _nvm_load; node "$@"; }
-function npm()  { _nvm_load; npm "$@"; }
-function npx()  { _nvm_load; npx "$@"; }
-function yarn() { _nvm_load; yarn "$@"; }
-
-# Put the active node version on PATH immediately (without loading nvm)
-# so shebangs and scripts that call node directly still work
-if [ -s "$NVM_DIR/alias/default" ]; then
-  export PATH="$NVM_DIR/versions/node/$(cat "$NVM_DIR/alias/default")/bin:$PATH"
-fi
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 export PNPM_HOME="/Users/alec/Library/pnpm"
 case ":$PATH:" in

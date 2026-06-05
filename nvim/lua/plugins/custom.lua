@@ -90,31 +90,35 @@ local plugins = {
 
 	{
 		"nvim-tree/nvim-tree.lua",
-		opts = {
-			diagnostics = {
+		config = function()
+			local opts = require("nvchad.configs.nvimtree")
+			opts.diagnostics = {
 				enable = true,
 				icons = {
-					hint = "",
-					info = "",
-					warning = "",
-					error = "",
+					hint = "",
+					info = "",
+					warning = "",
+					error = "",
 				},
 				show_on_dirs = true,
-			},
-			filters = {
+			}
+			opts.filters = {
 				dotfiles = false,
 				git_ignored = false,
-			},
-			renderer = {
-				icons = {
-					glyphs = {
-						git = {
-							unstaged = "",
-						},
-					},
-				},
-			},
-		},
+			}
+			opts.renderer.icons.show = opts.renderer.icons.show or {}
+			opts.renderer.icons.show.modified = false
+			opts.renderer.icons.glyphs.git = {
+				unstaged = "●",
+				staged = "",
+				unmerged = "●",
+				renamed = "",
+				untracked = "",
+				deleted = "",
+				ignored = "",
+			}
+			require("nvim-tree").setup(opts)
+		end,
 	},
 
 	{
