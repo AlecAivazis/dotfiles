@@ -38,5 +38,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# run completions
-source <(run completion zsh)
+# run completions - deferred until after antigen's precmd compinit hook
+_run_completion_setup() {
+    source <(run completion zsh)
+    add-zsh-hook -D precmd _run_completion_setup
+}
+add-zsh-hook precmd _run_completion_setup
