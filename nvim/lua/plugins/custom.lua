@@ -90,8 +90,7 @@ local plugins = {
 
 	{
 		"nvim-tree/nvim-tree.lua",
-		config = function()
-			local opts = require("nvchad.configs.nvimtree")
+		opts = function(_, opts)
 			opts.diagnostics = {
 				enable = true,
 				icons = {
@@ -106,8 +105,12 @@ local plugins = {
 				dotfiles = false,
 				git_ignored = false,
 			}
+			opts.renderer = opts.renderer or {}
+			opts.renderer.icons = opts.renderer.icons or {}
 			opts.renderer.icons.show = opts.renderer.icons.show or {}
 			opts.renderer.icons.show.modified = false
+			opts.renderer.icons.diagnostics_placement = "before"
+			opts.renderer.icons.glyphs = opts.renderer.icons.glyphs or {}
 			opts.renderer.icons.glyphs.git = {
 				unstaged = "●",
 				staged = "",
@@ -117,7 +120,7 @@ local plugins = {
 				deleted = "",
 				ignored = "",
 			}
-			require("nvim-tree").setup(opts)
+			return opts
 		end,
 	},
 
