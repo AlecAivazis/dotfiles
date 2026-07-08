@@ -78,6 +78,13 @@ local servers = {
         }
       }
     }
+  },
+  -- Houdini GraphQL LSP (project-local binary)
+  -- https://houdinigraphql.com/react/v2/setup/ide-setup/
+  houdini = {
+    cmd = { "node_modules/.bin/houdini-lsp", "--stdio" },
+    root_markers = { "houdini.config.js", "houdini.config.ts" },
+    filetypes = { "graphql", "typescript", "typescriptreact", "javascript", "javascriptreact", "svelte" },
   }
 }
 
@@ -128,5 +135,9 @@ for server, config in pairs(servers) do
     capabilities = nvlsp.capabilities,
   }, config)
 end
+
+-- Houdini's LSP ships as a project-local binary rather than a Mason server,
+-- so it isn't picked up by NvChad's auto-enable and must be enabled explicitly.
+vim.lsp.enable("houdini")
 
 
